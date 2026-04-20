@@ -1,34 +1,335 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="このブログについて"
-	description="まこもノートの自己紹介"
-	pubDate={new Date('April 20 2026')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		はじめまして、まこもです。
-	</p>
-	<p>
-		7歳・5歳・1歳の3人の男の子を育てる専業主婦です。
-		日々の育児・家事のかたわら、日本の高配当株への投資や家計管理に取り組んでいます。
-	</p>
-	<p>
-		このブログでは、専業主婦のリアルな視点から
-		資産形成・家計管理・日常の気づきをゆるく発信していきます。
-	</p>
-	<p>
-		投資初心者の方にもわかりやすく書いていくので、
-		「難しそう…」と思っている方もぜひ気軽に読んでみてください。
-	</p>
-	<h2>このブログで書くこと</h2>
-	<ul>
-		<li>日本高配当株への投資記録</li>
-		<li>家計管理・節約の工夫</li>
-		<li>簿記の勉強記録</li>
-		<li>3児ママの日常</li>
-	</ul>
-</Layout>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={`プロフィール | ${SITE_TITLE}`} description="まこもの自己紹介。30代専業主婦・3男の母・資産3,000万円突破。" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="layout">
+        <div class="main-col">
+
+          <!-- Hero -->
+          <div class="profile-hero">
+            <div class="avatar">ま</div>
+            <div class="profile-name">まこも</div>
+            <div class="profile-handle">@macomo_note</div>
+            <p class="profile-tagline">ムリせず、整う暮らしを目指す専業主婦</p>
+          </div>
+
+          <!-- Bio -->
+          <section class="section">
+            <div class="section-label">ABOUT ME</div>
+            <div class="prose">
+              <p>はじめまして、まこもです。</p>
+              <p>7歳・5歳・1歳の男の子3人を育てながら、専業主婦として資産形成に取り組んでいます。</p>
+              <p>「収入がないのに投資なんてできるの？」とよく聞かれますが、専業主婦でも<strong>家計管理×長期投資</strong>の組み合わせで、資産3,000万円を達成することができました。難しいことは何もしていません。ただ、続けてきただけです。</p>
+              <p>このブログでは、等身大のお金の話と日常をゆるく書いています。「普通の主婦でもできる」をテーマに、リアルな数字も交えながら発信していきます。</p>
+            </div>
+          </section>
+
+          <!-- Profile Data -->
+          <section class="section">
+            <div class="section-label">PROFILE</div>
+            <div class="data-list">
+              <div class="data-item">
+                <span class="data-key">年代</span>
+                <span class="data-val">30代</span>
+              </div>
+              <div class="data-item">
+                <span class="data-key">家族</span>
+                <span class="data-val">夫・長男（7歳）・次男（5歳）・三男（1歳）の5人家族</span>
+              </div>
+              <div class="data-item">
+                <span class="data-key">職業</span>
+                <span class="data-val">専業主婦</span>
+              </div>
+              <div class="data-item">
+                <span class="data-key">資産</span>
+                <span class="data-val">3,000万円突破（2026年）</span>
+              </div>
+              <div class="data-item">
+                <span class="data-key">投資スタイル</span>
+                <span class="data-val">日本高配当株・長期保有（SBI証券・楽天証券）</span>
+              </div>
+              <div class="data-item">
+                <span class="data-key">勉強中</span>
+                <span class="data-val">FP2級・簿記3級</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- What I write -->
+          <section class="section">
+            <div class="section-label">このブログで書くこと</div>
+            <div class="topic-grid">
+              <div class="topic-card money">
+                <div class="topic-icon">💰</div>
+                <div class="topic-name">お金</div>
+                <p class="topic-desc">家計公開・資産運用・節約の工夫。リアルな数字を出しながら書いています。</p>
+              </div>
+              <div class="topic-card study">
+                <div class="topic-icon">📚</div>
+                <div class="topic-name">学び</div>
+                <p class="topic-desc">FP・簿記の勉強記録。子育て中でも続けられる学習法を発信。</p>
+              </div>
+              <div class="topic-card family">
+                <div class="topic-icon">👦</div>
+                <div class="topic-name">子育て</div>
+                <p class="topic-desc">男三兄弟との日常。育児と家計管理の両立について。</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Message -->
+          <section class="section">
+            <div class="section-label">MESSAGE</div>
+            <div class="message-box">
+              <p>「投資って難しそう」「専業主婦には無理」と思っている方へ。</p>
+              <p>私も最初はそう思っていました。でも、少しずつ勉強して、家計を整えて、コツコツ続けていたら、気づいたら資産が増えていました。特別な才能も、高い収入も必要ありません。</p>
+              <p>このブログが、あなたの「やってみよう」のきっかけになれたら嬉しいです。</p>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-label">SNS</div>
+            <p class="sns-note">X（旧Twitter）で日々のお金メモを発信中。</p>
+            <a href="https://x.com/macomo_note" class="btn-outline" target="_blank" rel="noopener">@macomo_note ›</a>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-label">資産の内訳</div>
+            <div class="asset-item">
+              <span class="asset-label">日本高配当株</span>
+              <span class="asset-note">46銘柄超・2口座運用</span>
+            </div>
+            <div class="asset-item">
+              <span class="asset-label">NISA</span>
+              <span class="asset-note">積立継続中</span>
+            </div>
+            <div class="asset-item">
+              <span class="asset-label">現金・預金</span>
+              <span class="asset-note">生活防衛費として確保</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main { padding-bottom: 0; }
+
+  .layout {
+    max-width: var(--layout-max);
+    margin: 0 auto;
+    padding: 48px 24px 60px;
+    display: grid;
+    grid-template-columns: 1fr var(--sidebar-width);
+    gap: 40px;
+  }
+
+  /* Hero */
+  .profile-hero {
+    text-align: center;
+    padding: 40px 0 36px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 40px;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8D6C5, #F0E4D4);
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 30px;
+    color: #8A6A3E;
+  }
+  .profile-name {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-ink);
+    letter-spacing: 0.05em;
+  }
+  .profile-handle {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    margin-top: 4px;
+  }
+  .profile-tagline {
+    font-size: 14px;
+    color: var(--color-ink-soft);
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.2em;
+    margin-bottom: 18px;
+  }
+
+  /* Prose */
+  .prose {
+    font-size: 15px;
+    line-height: 1.95;
+    color: var(--color-ink);
+  }
+  .prose p { margin: 0 0 20px; }
+
+  /* Data list */
+  .data-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .data-item {
+    display: flex;
+    gap: 20px;
+    padding: 12px 0;
+    border-top: 1px solid var(--color-border-soft);
+    font-size: 14px;
+  }
+  .data-item:first-child { border-top: none; }
+  .data-key {
+    color: var(--color-ink-mute);
+    width: 90px;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+  .data-val {
+    color: var(--color-ink);
+    line-height: 1.6;
+  }
+
+  /* Topic grid */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .topic-card {
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+  .topic-card.money { background: #F8F2EB; }
+  .topic-card.study { background: #EDF1E8; }
+  .topic-card.family { background: #F5EDEC; }
+  .topic-icon { font-size: 22px; margin-bottom: 8px; }
+  .topic-name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--color-ink);
+    margin-bottom: 8px;
+  }
+  .topic-desc {
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Message */
+  .message-box {
+    background: var(--color-surface-warm);
+    border-left: 2px solid var(--color-accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: var(--color-ink);
+    line-height: 1.9;
+  }
+  .message-box p { margin: 0 0 14px; }
+  .message-box p:last-child { margin: 0; }
+
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 140px;
+  }
+  .sidebar-card {
+    background: var(--color-paper-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .sidebar-label {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+  .sns-note {
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+    margin: 0 0 12px;
+  }
+  .btn-outline {
+    display: block;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-ink);
+    text-align: center;
+    text-decoration: none;
+    transition: background var(--duration-base) var(--easing-standard);
+  }
+  .btn-outline:hover { background: var(--color-surface-warm); color: var(--color-ink); }
+
+  .asset-item {
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border-soft);
+    font-size: 13px;
+  }
+  .asset-item:first-of-type { border-top: none; }
+  .asset-label {
+    display: block;
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    margin-bottom: 2px;
+  }
+  .asset-note {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+  }
+
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 24px 16px 40px;
+    }
+    .topic-grid { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+  }
+</style>
