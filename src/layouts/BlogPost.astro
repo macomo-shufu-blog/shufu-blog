@@ -1,86 +1,262 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, category } = Astro.props;
+
+const catMap: Record<string, { label: string; bg: string; color: string; dot: string }> = {
+  money: { label: 'お金', bg: '#F0E4D4', color: '#8A6A3E', dot: '#C49A6A' },
+  study: { label: '学び', bg: '#DDE3D4', color: '#4F6041', dot: '#7A8B6A' },
+  family: { label: '子育て', bg: '#EDDCDC', color: '#7A5252', dot: '#A67F7F' },
+};
+const cat = catMap[category || 'money'] || catMap.money;
+
+const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\//g, '.');
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<html lang="ja">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      .layout {
+        max-width: var(--layout-max);
+        margin: 0 auto;
+        padding: 48px 24px 60px;
+        display: grid;
+        grid-template-columns: 1fr var(--sidebar-width);
+        gap: 40px;
+      }
+      article {
+        min-width: 0;
+      }
+      .article-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        font-size: 12px;
+        color: var(--color-ink-mute);
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        padding: 3px 10px;
+        border-radius: var(--radius-xs);
+      }
+      .tag-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .article-title {
+        font-family: var(--font-serif);
+        font-size: 34px;
+        font-weight: 500;
+        color: var(--color-ink);
+        letter-spacing: 0.04em;
+        line-height: 1.4;
+        margin: 0 0 28px;
+      }
+      .prose {
+        max-width: var(--content-max);
+        font-size: 16px;
+        line-height: 1.95;
+        color: var(--color-ink);
+      }
+      .prose h2 {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--color-ink);
+        margin: 36px 0 16px;
+        letter-spacing: 0.04em;
+      }
+      .prose h3 {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--color-ink);
+        margin: 28px 0 12px;
+      }
+      .prose p {
+        margin: 0 0 20px;
+      }
+      .prose ul, .prose ol {
+        margin: 0 0 20px;
+        padding-left: 1.5em;
+      }
+      .prose li { margin-bottom: 8px; }
+      .prose blockquote {
+        background: var(--color-surface-warm);
+        border-left: 2px solid var(--color-accent);
+        padding: 14px 20px;
+        margin: 28px 0;
+        font-size: 14px;
+        color: var(--color-ink);
+        line-height: 1.8;
+      }
+      .prose hr {
+        border: none;
+        border-top: 1px solid var(--color-border);
+        margin: 32px 0;
+      }
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+      /* Sidebar */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .sidebar-card {
+        background: var(--color-paper-light);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+      }
+      .sidebar-profile { text-align: center; }
+      .avatar {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #E8D6C5, #F0E4D4);
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 26px;
+        color: #8A6A3E;
+      }
+      .profile-name {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        color: var(--color-ink);
+        letter-spacing: 0.05em;
+      }
+      .profile-handle {
+        font-size: 11px;
+        color: var(--color-ink-mute);
+        letter-spacing: 0.05em;
+        margin-top: 2px;
+        font-family: var(--font-mono);
+      }
+      .profile-bio {
+        font-size: 12px;
+        color: var(--color-ink-soft);
+        line-height: 1.75;
+        margin: 12px 0 16px;
+      }
+      .btn-outline {
+        display: block;
+        box-sizing: border-box;
+        background: transparent;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-md);
+        padding: 8px 0;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--color-ink);
+        text-align: center;
+        text-decoration: none;
+        transition: background var(--duration-base) var(--easing-standard);
+      }
+      .btn-outline:hover { background: var(--color-surface-warm); color: var(--color-ink); }
+
+      .newsletter { background: var(--color-surface-warm); }
+      .newsletter-title {
+        font-family: var(--font-serif);
+        font-size: 16px;
+        color: var(--color-ink);
+        margin-bottom: 4px;
+      }
+      .newsletter-desc {
+        font-size: 11px;
+        color: var(--color-ink-soft);
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .newsletter-form { display: flex; gap: 6px; }
+      .newsletter-form input {
+        flex: 1;
+        padding: 9px 12px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        font-size: 12px;
+        font-family: var(--font-sans);
+        color: var(--color-ink);
+      }
+      .newsletter-form input:focus { outline: none; border-color: var(--color-accent); }
+      .newsletter-form button {
+        background: var(--color-accent);
+        color: var(--color-paper-light);
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: 9px 16px;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .newsletter-form button:hover { background: var(--color-accent-hover); }
+
+      @media (max-width: 768px) {
+        .layout {
+          grid-template-columns: 1fr;
+          padding: 24px 16px 40px;
+        }
+        .article-title { font-size: 24px; }
+        .sidebar { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <div class="layout">
+      <article>
+        <div class="article-meta">
+          <span class="tag" style={`background:${cat.bg};color:${cat.color}`}>
+            <span class="tag-dot" style={`background:${cat.dot}`}></span>
+            {cat.label}
+          </span>
+          <span>{dateStr}</span>
+        </div>
+        <h1 class="article-title">{title}</h1>
+        <div class="prose">
+          <slot />
+        </div>
+      </article>
+
+      <aside class="sidebar">
+        <div class="sidebar-card sidebar-profile">
+          <div class="avatar">ま</div>
+          <div class="profile-name">まこも</div>
+          <div class="profile-handle">@macomo_note</div>
+          <p class="profile-bio">34歳・専業主婦・男三兄弟の母。資産3,000万円突破。FP2級・簿記3級勉強中。</p>
+          <a href="/about" class="btn-outline">プロフィールを見る ›</a>
+        </div>
+
+        <div class="sidebar-card newsletter">
+          <div class="newsletter-title">新着記事をメールで</div>
+          <p class="newsletter-desc">更新のお知らせを月2回ほどお届けします。いつでも解除できます。</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="you@example.com" />
+            <button type="button">登録</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <Footer />
+  </body>
 </html>

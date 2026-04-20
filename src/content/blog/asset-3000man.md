@@ -2,7 +2,7 @@
 title: '専業主婦が資産3000万円を達成するまでの道のり【リアル記録】'
 description: '貯金箱が大好きだった子供時代から、3人の子育てをしながら資産3000万円を達成するまでのリアルな記録です。'
 pubDate: 'Apr 20 2026'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+category: 'money'
 ---
 
 こんにちは、まこもです。

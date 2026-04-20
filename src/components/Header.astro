@@ -1,58 +1,101 @@
 ---
 import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
-	<div class="banner">
-		<img src="/banner.svg" alt={SITE_TITLE} />
-	</div>
-	<nav>
-		<div class="internal-links">
-			<HeaderLink href="/">ホーム</HeaderLink>
-			<HeaderLink href="/blog">ブログ</HeaderLink>
-			<HeaderLink href="/about">このブログについて</HeaderLink>
-		</div>
-	</nav>
+  <div class="inner">
+    <a href="/" class="logo">
+      <div class="logo-title">
+        <span class="logo-macomo">macomo</span>
+        <span class="logo-dot"></span>
+        <span class="logo-note">note</span>
+      </div>
+      <div class="logo-sub">MURISEZU TOTONOU</div>
+    </a>
+    <nav>
+      <a href="/">ホーム</a>
+      <a href="/blog">記事一覧</a>
+      <a href="/about">プロフィール</a>
+    </nav>
+  </div>
 </header>
+
 <style>
-	header {
-		margin: 0;
-		background: #F7F5F2;
-		box-shadow: 0 2px 8px rgba(0,0,0,5%);
-	}
-	.banner {
-		width: 100%;
-		max-height: 160px;
-		overflow: hidden;
-		display: flex;
-		align-items: flex-start;
-	}
-	.banner img {
-		width: 100%;
-		height: auto;
-		display: block;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0 1em;
-		background: #F7F5F2;
-		border-top: 1px solid #EEE8E0;
-	}
-	.internal-links {
-		display: flex;
-		gap: 0.5em;
-	}
-	nav a {
-		padding: 0.8em 1em;
-		color: #3A2E2A;
-		border-bottom: 3px solid transparent;
-		text-decoration: none;
-		font-size: 0.95em;
-	}
-	nav a.active {
-		border-bottom-color: #C4956A;
-	}
+  header {
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .inner {
+    max-width: var(--layout-max);
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+  }
+  .logo:hover { color: inherit; }
+  .logo-title {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .logo-macomo {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: 0.02em;
+  }
+  .logo-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .logo-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  .logo-sub {
+    font-size: 10px;
+    color: var(--color-accent);
+    letter-spacing: 0.2em;
+    margin-top: 2px;
+  }
+  nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  nav a {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-ink);
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color var(--duration-base) var(--easing-standard),
+                border-color var(--duration-base) var(--easing-standard);
+  }
+  nav a:hover,
+  nav a[aria-current="page"] {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+  @media (max-width: 600px) {
+    .inner { padding: 16px; }
+    .logo-macomo, .logo-note { font-size: 20px; }
+    nav { gap: 16px; }
+    nav a { font-size: 12px; }
+  }
 </style>
