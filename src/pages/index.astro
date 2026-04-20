@@ -62,7 +62,6 @@ const catCounts = {
                   <span class="meta-date">{posts[0].data.pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\//g, '.')}</span>
                 </div>
                 <h2 class="card-title large">{posts[0].data.title}</h2>
-                <div class="card-quote">「専業主婦でも、コツコツやれば資産は増やせる」</div>
                 {posts[0].data.description && (
                   <p class="card-excerpt">{posts[0].data.description}</p>
                 )}
@@ -382,17 +381,6 @@ const catCounts = {
     color: var(--color-accent);
     font-weight: 500;
     flex-shrink: 0;
-  }
-  .card-quote {
-    font-size: 13px;
-    color: var(--color-accent);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    border-left: 2px solid var(--color-accent);
-    padding: 6px 12px;
-    margin: 10px 0 12px;
-    background: var(--color-accent-soft);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   }
 
   /* Newsletter */
