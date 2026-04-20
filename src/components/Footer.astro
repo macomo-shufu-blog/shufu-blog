@@ -2,52 +2,123 @@
 const year = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="logo">macomo<span class="dot">·</span>note</div>
-  <div class="tagline">MURISEZU TOTONOU</div>
-  <nav>
-    <a href="/about">プロフィール</a>
-  </nav>
-  <div class="copy">© {year} macomo note</div>
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      <div class="logo">macomo<span class="dot">·</span>note</div>
+      <p class="brand-desc">お金と子育てと学びのある、整う暮らし。</p>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>人気記事</h3>
+        <ul>
+          <li><a href="/blog/asset-3000man/">資産3,000万円までの道のり</a></li>
+          <li><a href="/blog/kakei-kokai-2026-04/">家計管理のリアル</a></li>
+          <li><a href="/blog/boki3-benkyoho/">子育てしながら勉強するコツ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>カテゴリー</h3>
+        <ul>
+          <li><a href="/blog/">お金</a></li>
+          <li><a href="/blog/">子育て</a></li>
+          <li><a href="/blog/">学び</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>運営情報</h3>
+        <ul>
+          <li><a href="/about">プロフィール</a></li>
+          <li><a href="/about">お問い合わせ</a></li>
+          <li><a href="/privacy">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} macomo note</p>
+    </div>
+
+  </div>
 </footer>
 
 <style>
-  footer {
+  .site-footer {
     border-top: 1px solid var(--color-border);
-    padding: 40px 24px 60px;
     margin-top: 80px;
-    text-align: center;
     background: var(--color-paper);
+    padding: 56px 24px 32px;
+  }
+  .footer-inner {
+    max-width: var(--layout-max);
+    margin: 0 auto;
+  }
+
+  /* Brand */
+  .footer-brand {
+    margin-bottom: 40px;
   }
   .logo {
     font-family: var(--font-serif);
-    font-size: 18px;
+    font-size: 20px;
     color: var(--color-ink);
     letter-spacing: 0.06em;
   }
   .dot { color: var(--color-accent); }
-  .tagline {
+  .brand-desc {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.05em;
+    margin-top: 6px;
+  }
+
+  /* Grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--color-border-soft);
+    margin-bottom: 24px;
+  }
+  .footer-column h3 {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.15em;
+    margin: 0 0 14px;
+  }
+  .footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-column a {
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--easing-standard);
+  }
+  .footer-column a:hover { color: var(--color-accent); }
+
+  /* Bottom */
+  .footer-bottom p {
     font-size: 11px;
     color: var(--color-ink-mute);
     letter-spacing: 0.1em;
-    margin-top: 6px;
+    margin: 0;
   }
-  nav {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  nav a {
-    font-size: 12px;
-    color: var(--color-ink-soft);
-    text-decoration: none;
-  }
-  nav a:hover { color: var(--color-accent); }
-  .copy {
-    font-size: 10px;
-    color: var(--color-ink-mute);
-    margin-top: 24px;
-    letter-spacing: 0.1em;
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
   }
 </style>
