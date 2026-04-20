@@ -1,114 +1,266 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const catMap: Record<string, { label: string; bg: string; color: string; dot: string }> = {
+  money: { label: 'お金', bg: '#F0E4D4', color: '#8A6A3E', dot: '#C49A6A' },
+  study: { label: '学び', bg: '#DDE3D4', color: '#4F6041', dot: '#7A8B6A' },
+  family: { label: '子育て', bg: '#EDDCDC', color: '#7A5252', dot: '#A67F7F' },
+};
+
+function getCat(post: any) {
+  return catMap[post.data.category || 'money'] || catMap.money;
+}
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+<html lang="ja">
+  <head>
+    <BaseHead title={`記事一覧 | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="layout">
+        <div class="main-col">
+          <div class="section-label">ALL POSTS</div>
+          <div class="post-list">
+            {posts.map(post => {
+              const c = getCat(post);
+              const dateStr = post.data.pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\//g, '.');
+              return (
+                <article class="card">
+                  <a href={`/blog/${post.id}/`}>
+                    <div class="card-meta">
+                      <span class="tag" style={`background:${c.bg};color:${c.color}`}>
+                        <span class="tag-dot" style={`background:${c.dot}`}></span>
+                        {c.label}
+                      </span>
+                      <span class="meta-date">{dateStr}</span>
+                    </div>
+                    <h2 class="card-title">{post.data.title}</h2>
+                    {post.data.description && (
+                      <p class="card-excerpt">{post.data.description}</p>
+                    )}
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-card sidebar-profile">
+            <div class="avatar">ま</div>
+            <div class="profile-name">まこも</div>
+            <div class="profile-handle">@macomo_note</div>
+            <p class="profile-bio">30代専業主婦・男三兄弟の母。資産3,000万円突破。FP2級・簿記3級勉強中。</p>
+            <a href="/about" class="btn-outline">プロフィールを見る ›</a>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-label">CATEGORIES</div>
+            <div class="cat-item">
+              <div class="cat-name">お金</div>
+              <div class="cat-desc">資産運用・節約・家計公開</div>
+            </div>
+            <div class="cat-item">
+              <div class="cat-name">学び</div>
+              <div class="cat-desc">資格勉強・読書・学習記録</div>
+            </div>
+            <div class="cat-item">
+              <div class="cat-name">子育て</div>
+              <div class="cat-desc">育児・暮らし・男三兄弟</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
+
+<style>
+  main { padding-bottom: 0; }
+
+  .layout {
+    max-width: var(--layout-max);
+    margin: 0 auto;
+    padding: 48px 24px 60px;
+    display: grid;
+    grid-template-columns: 1fr var(--sidebar-width);
+    gap: 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.2em;
+    margin-bottom: 18px;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    transition: border-color var(--duration-base) var(--easing-standard),
+                background var(--duration-base) var(--easing-standard);
+  }
+  .card:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-paper-light);
+  }
+  .card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card a:hover { color: inherit; }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: var(--radius-xs);
+  }
+  .tag-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .meta-date {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+  .card-excerpt {
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .sidebar-card {
+    background: var(--color-paper-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .sidebar-profile { text-align: center; }
+  .sidebar-label {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.15em;
+    margin-bottom: 14px;
+  }
+  .avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8D6C5, #F0E4D4);
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 26px;
+    color: #8A6A3E;
+  }
+  .profile-name {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    color: var(--color-ink);
+  }
+  .profile-handle {
+    font-size: 11px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+  }
+  .profile-bio {
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    line-height: 1.75;
+    margin: 12px 0 16px;
+  }
+  .btn-outline {
+    display: block;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--color-ink);
+    text-align: center;
+    text-decoration: none;
+    transition: background var(--duration-base) var(--easing-standard);
+  }
+  .btn-outline:hover { background: var(--color-surface-warm); color: var(--color-ink); }
+
+  .cat-item {
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border-soft);
+  }
+  .cat-item:first-of-type { border-top: none; }
+  .cat-name {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--color-ink);
+  }
+  .cat-desc {
+    font-size: 10px;
+    color: var(--color-ink-mute);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .layout {
+      grid-template-columns: 1fr;
+      padding: 24px 16px 40px;
+    }
+    .sidebar { display: none; }
+  }
+</style>
