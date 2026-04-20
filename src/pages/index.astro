@@ -32,7 +32,7 @@ function getCat(post: any) {
       <!-- Hero -->
       <section class="hero">
         <h1>ムリせず、整う<span class="accent-dot">。</span></h1>
-        <p class="hero-sub">お金・子育て・学びで、整う暮らしを。</p>
+        <p class="hero-sub">お金・子育て・学びで、整う暮らしを。<br>専業主婦まこもの、等身大の資産形成と日常記録。</p>
       </section>
 
       <!-- 2-column layout -->
@@ -95,6 +95,7 @@ function getCat(post: any) {
             <div class="profile-name">まこも</div>
             <div class="profile-handle">@macomo_note</div>
             <p class="profile-bio">30代専業主婦・男三兄弟の母。資産3,000万円突破。FP2級・簿記3級勉強中。</p>
+            <p class="profile-gets">このブログでは「普通の主婦でもできる」お金の増やし方と暮らしの工夫を発信しています。</p>
             <a href="/about" class="btn-outline">プロフィールを見る ›</a>
           </div>
 
@@ -157,10 +158,12 @@ function getCat(post: any) {
   }
   .accent-dot { color: var(--color-accent); }
   .hero-sub {
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
     color: var(--color-ink-soft);
-    letter-spacing: 0.1em;
-    margin-top: 14px;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    margin-top: 16px;
   }
 
   /* Layout */
@@ -311,7 +314,17 @@ function getCat(post: any) {
     font-size: 12px;
     color: var(--color-ink-soft);
     line-height: 1.75;
-    margin: 12px 0 16px;
+    margin: 12px 0 8px;
+  }
+  .profile-gets {
+    font-size: 11px;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+    margin: 0 0 14px;
+    padding: 8px 10px;
+    background: var(--color-surface-warm);
+    border-radius: var(--radius-sm);
+    text-align: left;
   }
   .btn-outline {
     display: block;
@@ -349,8 +362,8 @@ function getCat(post: any) {
     color: var(--color-ink);
   }
   .cat-desc {
-    font-size: 10px;
-    color: var(--color-ink-mute);
+    font-size: 11px;
+    color: var(--color-ink-soft);
     margin-top: 2px;
   }
 
