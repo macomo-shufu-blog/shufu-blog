@@ -77,8 +77,10 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
         font-size: 22px;
         font-weight: 500;
         color: var(--color-ink);
-        margin: 36px 0 16px;
+        margin: 48px 0 16px;
         letter-spacing: 0.04em;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-border);
       }
       .prose h3 {
         font-family: var(--font-serif);
@@ -97,17 +99,56 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
       .prose li { margin-bottom: 8px; }
       .prose blockquote {
         background: var(--color-surface-warm);
-        border-left: 2px solid var(--color-accent);
-        padding: 14px 20px;
-        margin: 28px 0;
+        border-left: 3px solid var(--color-accent);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        padding: 16px 20px;
+        margin: 32px 0;
         font-size: 14px;
         color: var(--color-ink);
-        line-height: 1.8;
+        line-height: 1.9;
       }
+      .prose blockquote p { margin: 0 0 8px; }
+      .prose blockquote p:last-child { margin: 0; }
       .prose hr {
         border: none;
         border-top: 1px solid var(--color-border);
-        margin: 32px 0;
+        margin: 40px 0;
+      }
+      /* テーブル */
+      .prose table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 0 28px;
+        font-size: 14px;
+      }
+      .prose th {
+        background: var(--color-surface-warm);
+        color: var(--color-ink);
+        font-weight: 500;
+        padding: 10px 14px;
+        border: 1px solid var(--color-border);
+        text-align: left;
+        font-family: var(--font-serif);
+      }
+      .prose td {
+        padding: 10px 14px;
+        border: 1px solid var(--color-border);
+        color: var(--color-ink-soft);
+        line-height: 1.7;
+      }
+      .prose tr:nth-child(even) td {
+        background: var(--color-paper-light);
+      }
+      /* 太字を目立たせる */
+      .prose strong {
+        color: var(--color-ink);
+        font-weight: 600;
+      }
+      /* リストをきれいに */
+      .prose ul li::marker { color: var(--color-accent); }
+      .prose ol li::marker {
+        color: var(--color-accent);
+        font-weight: 600;
       }
 
       /* Sidebar */
