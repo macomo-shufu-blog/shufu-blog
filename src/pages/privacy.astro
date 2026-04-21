@@ -1,0 +1,95 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={`プライバシーポリシー | ${SITE_TITLE}`} description="macomo noteのプライバシーポリシーです。" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="layout">
+        <article class="prose">
+          <h1>プライバシーポリシー</h1>
+
+          <p>macomo note（以下「当ブログ」）は、読者の皆さまのプライバシーを尊重し、個人情報の保護に努めます。</p>
+
+          <h2>個人情報の収集について</h2>
+          <p>当ブログでは、お問い合わせやコメント投稿の際に、お名前・メールアドレスなどの個人情報をご入力いただく場合があります。取得した個人情報は、お問い合わせへの回答など必要な範囲でのみ使用し、第三者に提供することはありません。</p>
+
+          <h2>アクセス解析ツールについて</h2>
+          <p>当ブログでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。このツールはCookieを使用してデータを収集しますが、個人を特定する情報は含まれません。Cookieの使用はブラウザの設定から無効にすることができます。</p>
+          <p>詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener noreferrer">Googleのポリシー</a>をご確認ください。</p>
+
+          <h2>広告について（アフィリエイト）</h2>
+          <p>当ブログは、第三者配信の広告サービス（A8.net・もしもアフィリエイトなど）を利用しています。広告配信事業者はCookieを使用して、読者が当ブログや他サイトに訪問した際の情報に基づいて広告を表示することがあります。</p>
+          <p>当ブログに掲載されているアフィリエイトリンクは、読者の皆さまに有益な情報を提供する目的で紹介しています。リンク経由で商品・サービスをご購入いただいた場合、当ブログに報酬が発生することがあります。</p>
+
+          <h2>免責事項</h2>
+          <p>当ブログの情報は、筆者の個人的な経験や見解に基づくものです。記事の内容は正確性を心がけておりますが、情報の完全性・正確性・有用性を保証するものではありません。当ブログの情報を利用したことによって生じた損害について、筆者は一切の責任を負いません。</p>
+          <p>投資・資産運用に関する記事は情報提供を目的としており、特定の金融商品への投資を推奨するものではありません。投資に関する最終判断はご自身の責任でお願いします。</p>
+
+          <h2>著作権について</h2>
+          <p>当ブログに掲載されている文章・画像等の著作権は筆者に帰属します。無断転載・複製はお断りしております。</p>
+
+          <h2>プライバシーポリシーの変更</h2>
+          <p>本プライバシーポリシーは、必要に応じて変更することがあります。変更後は当ページにて公開します。</p>
+
+          <h2>お問い合わせ</h2>
+          <p>当ブログに関するお問い合わせは、<a href="/about">プロフィールページ</a>よりご連絡ください。</p>
+
+          <p class="updated">最終更新日：2026年4月21日</p>
+        </article>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .layout {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .prose h1 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: 0.04em;
+    margin: 0 0 32px;
+  }
+  .prose h2 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-ink);
+    margin: 36px 0 12px;
+    letter-spacing: 0.03em;
+  }
+  .prose p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink-soft);
+    margin: 0 0 16px;
+  }
+  .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+  .updated {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    margin-top: 48px;
+  }
+  @media (max-width: 768px) {
+    .layout { padding: 32px 16px 60px; }
+    .prose h1 { font-size: 22px; }
+  }
+</style>
