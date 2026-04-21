@@ -118,24 +118,30 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
       .prose table {
         width: 100%;
         border-collapse: collapse;
-        margin: 0 0 28px;
+        margin: 0 0 32px;
         font-size: 14px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--color-border);
       }
       .prose th {
         background: var(--color-surface-warm);
         color: var(--color-ink);
-        font-weight: 500;
-        padding: 10px 14px;
-        border: 1px solid var(--color-border);
+        font-weight: 600;
+        padding: 12px 16px;
+        border-bottom: 2px solid var(--color-border);
         text-align: left;
         font-family: var(--font-serif);
+        font-size: 13px;
+        letter-spacing: 0.03em;
       }
       .prose td {
-        padding: 10px 14px;
-        border: 1px solid var(--color-border);
-        color: var(--color-ink-soft);
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--color-border-soft);
+        color: var(--color-ink);
         line-height: 1.7;
       }
+      .prose tr:last-child td { border-bottom: none; }
       .prose tr:nth-child(even) td {
         background: var(--color-paper-light);
       }
@@ -145,11 +151,177 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
         font-weight: 600;
       }
       /* リストをきれいに */
-      .prose ul li::marker { color: var(--color-accent); }
+      .prose ul { list-style: none; padding-left: 0; }
+      .prose ul li {
+        padding-left: 1.4em;
+        position: relative;
+      }
+      .prose ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        opacity: 0.7;
+      }
+      .prose ol { padding-left: 1.5em; }
       .prose ol li::marker {
         color: var(--color-accent);
         font-weight: 600;
       }
+
+      /* ポイントボックス */
+      .point-box {
+        background: #F0F4EC;
+        border: 1px solid #C8D8B8;
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        margin: 32px 0;
+      }
+      .point-box .box-title {
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+        color: #4F6041;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .point-box ul { margin: 0; }
+      .point-box li { font-size: 14px; color: var(--color-ink); }
+
+      /* まとめボックス */
+      .summary-box {
+        background: var(--color-surface-warm);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        margin: 32px 0;
+      }
+      .summary-box .box-title {
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-accent);
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+      }
+
+      /* CTAボックス */
+      .cta-box {
+        background: linear-gradient(135deg, #F5EDE3, #FAF3EC);
+        border: 1px solid #D9C4AA;
+        border-radius: var(--radius-lg);
+        padding: 24px 28px;
+        margin: 40px 0;
+        text-align: center;
+      }
+      .cta-box .cta-title {
+        font-family: var(--font-serif);
+        font-size: 17px;
+        color: var(--color-ink);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .cta-box .cta-desc {
+        font-size: 13px;
+        color: var(--color-ink-soft);
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+      .cta-box .cta-btn {
+        display: inline-block;
+        background: var(--color-accent);
+        color: #fff;
+        border-radius: var(--radius-md);
+        padding: 12px 28px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: background var(--duration-base) var(--easing-standard);
+      }
+      .cta-box .cta-btn:hover { background: var(--color-accent-hover); color: #fff; }
+      .cta-box .cta-note {
+        font-size: 11px;
+        color: var(--color-ink-mute);
+        margin-top: 10px;
+      }
+
+      /* 著者カード */
+      .author-card {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        background: var(--color-paper-light);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        margin: 48px 0 0;
+      }
+      .author-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #E8D6C5, #F0E4D4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: #8A6A3E;
+        flex-shrink: 0;
+      }
+      .author-info { flex: 1; }
+      .author-name {
+        font-family: var(--font-serif);
+        font-size: 15px;
+        color: var(--color-ink);
+        margin-bottom: 4px;
+      }
+      .author-handle {
+        font-size: 11px;
+        color: var(--color-ink-mute);
+        font-family: var(--font-mono);
+        margin-bottom: 8px;
+      }
+      .author-bio {
+        font-size: 12px;
+        color: var(--color-ink-soft);
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      /* 関連記事ボックス */
+      .related-box {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 18px 22px;
+        margin: 32px 0;
+        background: var(--color-surface);
+      }
+      .related-box .box-title {
+        font-size: 11px;
+        color: var(--color-ink-mute);
+        letter-spacing: 0.15em;
+        margin-bottom: 12px;
+      }
+      .related-box a {
+        display: block;
+        font-size: 14px;
+        color: var(--color-ink);
+        text-decoration: none;
+        padding: 6px 0;
+        border-top: 1px solid var(--color-border-soft);
+        transition: color var(--duration-base) var(--easing-standard);
+      }
+      .related-box a:first-of-type { border-top: none; }
+      .related-box a:hover { color: var(--color-accent); }
 
       /* Sidebar */
       .sidebar {
@@ -276,6 +448,16 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
         <h1 class="article-title">{title}</h1>
         <div class="prose">
           <slot />
+        </div>
+
+        <!-- 著者カード -->
+        <div class="author-card">
+          <div class="author-avatar">ま</div>
+          <div class="author-info">
+            <div class="author-name">まこも</div>
+            <div class="author-handle">@macomo_note</div>
+            <p class="author-bio">30代専業主婦・男三兄弟の母。資産3,000万円突破。FP2級取得・簿記3級勉強中・宅建受験予定。家計管理と長期投資で、普通の主婦でもできる資産形成を発信しています。</p>
+          </div>
         </div>
       </article>
 
