@@ -16,6 +16,7 @@ import { SITE_TITLE } from '../consts';
       <a href="/">ホーム</a>
       <a href="/blog">記事一覧</a>
       <a href="/about">プロフィール</a>
+      <a href="/search" class="search-icon" aria-label="検索">🔍</a>
     </nav>
   </div>
 </header>
@@ -90,6 +91,11 @@ import { SITE_TITLE } from '../consts';
   nav a[aria-current="page"] {
     color: var(--color-accent);
     border-bottom-color: var(--color-accent);
+  }
+  .search-icon {
+    font-size: 15px;
+    border-bottom: none !important;
+    padding-bottom: 0;
   }
   @media (max-width: 600px) {
     .inner { padding: 16px; }

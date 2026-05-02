@@ -6,7 +6,8 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, category, readingTime } = Astro.props;
+const { title, description, pubDate, updatedDate, category, readingTime, headings } = Astro.props;
+const tocHeadings = (headings ?? []).filter((h: {depth: number}) => h.depth === 2 || h.depth === 3);
 
 const catMap: Record<string, { label: string; bg: string; color: string; dot: string }> = {
   money: { label: 'お金', bg: '#F0E4D4', color: '#8A6A3E', dot: '#C49A6A' },
@@ -253,6 +254,67 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
         margin-top: 10px;
       }
 
+      /* パンくずリスト */
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--color-ink-mute);
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .breadcrumb a {
+        color: var(--color-ink-mute);
+        text-decoration: none;
+      }
+      .breadcrumb a:hover { color: var(--color-accent); }
+      .breadcrumb-sep { opacity: 0.5; }
+      .breadcrumb span:last-child {
+        color: var(--color-ink-soft);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+      }
+
+      /* 目次 */
+      .toc {
+        background: var(--color-paper-light);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        margin: 0 0 36px;
+      }
+      .toc-title {
+        font-family: var(--font-serif);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-ink);
+        margin-bottom: 12px;
+        letter-spacing: 0.04em;
+      }
+      .toc-list {
+        margin: 0;
+        padding-left: 1.2em;
+        list-style: decimal;
+      }
+      .toc-list li {
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 6px;
+        color: var(--color-ink);
+      }
+      .toc-list li::before { display: none; }
+      .toc-list li::marker { color: var(--color-accent); }
+      .toc-list a {
+        color: var(--color-ink-soft);
+        text-decoration: none;
+      }
+      .toc-list a:hover { color: var(--color-accent); }
+      .toc-h3 { padding-left: 1em; list-style: none; }
+      .toc-h3::before { content: '– '; color: var(--color-ink-mute); }
+
       /* 読了時間 */
       .reading-time {
         font-size: 11px;
@@ -475,6 +537,15 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
     <Header />
     <div class="layout">
       <article>
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a>
+          <span class="breadcrumb-sep">›</span>
+          <a href={`/?category=${category}`}>{cat.label}</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>{title}</span>
+        </nav>
+
         <div class="article-meta">
           <span class="tag" style={`background:${cat.bg};color:${cat.color}`}>
             <span class="tag-dot" style={`background:${cat.dot}`}></span>
@@ -484,6 +555,20 @@ const dateStr = pubDate.toLocaleDateString('ja-JP', {year:'numeric',month:'2-dig
           {readingTime && <span class="reading-time">📖 約{readingTime}分</span>}
         </div>
         <h1 class="article-title">{title}</h1>
+
+        <!-- 目次 -->
+        {tocHeadings.length >= 3 && (
+          <nav class="toc">
+            <div class="toc-title">📋 目次</div>
+            <ol class="toc-list">
+              {tocHeadings.map((h: {depth: number; slug: string; text: string}) => (
+                <li class={h.depth === 3 ? 'toc-h3' : ''}>
+                  <a href={`#${h.slug}`}>{h.text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
         <div class="prose">
           <slot />
         </div>

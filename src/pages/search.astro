@@ -1,0 +1,56 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={`記事を検索 | ${SITE_TITLE}`} description="macomo noteの記事を検索できます。" />
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="layout">
+        <h1 class="page-title">記事を検索</h1>
+        <div id="search"></div>
+      </div>
+    </main>
+    <Footer />
+    <script src="/pagefind/pagefind-ui.js" is:inline></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        new PagefindUI({
+          element: '#search',
+          showSubResults: true,
+          translations: {
+            placeholder: 'キーワードを入力',
+            zero_results: '「[QUERY]」に一致する記事が見つかりませんでした。',
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .layout {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: 0.04em;
+    margin: 0 0 32px;
+  }
+  @media (max-width: 768px) {
+    .layout { padding: 32px 16px 60px; }
+  }
+</style>
