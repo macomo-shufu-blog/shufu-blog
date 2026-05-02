@@ -109,19 +109,9 @@ import { SITE_TITLE } from '../consts';
           </div>
 
           <div class="sidebar-card">
-            <div class="sidebar-label">資産の内訳</div>
-            <div class="asset-item">
-              <span class="asset-label">日本高配当株</span>
-              <span class="asset-note">46銘柄超・2口座運用</span>
-            </div>
-            <div class="asset-item">
-              <span class="asset-label">NISA</span>
-              <span class="asset-note">積立継続中</span>
-            </div>
-            <div class="asset-item">
-              <span class="asset-label">現金・預金</span>
-              <span class="asset-note">生活防衛費として確保</span>
-            </div>
+            <div class="sidebar-label">投資スタイル</div>
+            <p class="invest-note">日本の高配当株を中心に、SBI証券・楽天証券の2口座で長期保有。NISAも活用しながら、家計を守りつつコツコツ積み上げています。</p>
+            <a href="/blog" class="btn-outline">運用記録を読む ›</a>
           </div>
         </aside>
       </div>
@@ -307,21 +297,11 @@ import { SITE_TITLE } from '../consts';
   }
   .btn-outline:hover { background: var(--color-surface-warm); color: var(--color-ink); }
 
-  .asset-item {
-    padding: 10px 0;
-    border-top: 1px solid var(--color-border-soft);
+  .invest-note {
     font-size: 13px;
-  }
-  .asset-item:first-of-type { border-top: none; }
-  .asset-label {
-    display: block;
-    color: var(--color-ink);
-    font-family: var(--font-serif);
-    margin-bottom: 2px;
-  }
-  .asset-note {
-    font-size: 11px;
-    color: var(--color-ink-mute);
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+    margin: 0 0 14px;
   }
 
   @media (max-width: 768px) {

@@ -67,18 +67,18 @@ function getCat(post: any) {
 
           <div class="sidebar-card">
             <div class="sidebar-label">カテゴリ</div>
-            <div class="cat-item">
+            <a href="/blog/?category=money" class="cat-item">
               <div class="cat-name">お金</div>
               <div class="cat-desc">資産運用・節約・家計公開</div>
-            </div>
-            <div class="cat-item">
+            </a>
+            <a href="/blog/?category=study" class="cat-item">
               <div class="cat-name">学び</div>
               <div class="cat-desc">資格勉強・読書・学習記録</div>
-            </div>
-            <div class="cat-item">
+            </a>
+            <a href="/blog/?category=family" class="cat-item">
               <div class="cat-name">子育て</div>
               <div class="cat-desc">育児・暮らし・男三兄弟</div>
-            </div>
+            </a>
           </div>
         </aside>
       </div>
@@ -240,10 +240,17 @@ function getCat(post: any) {
   .btn-outline:hover { background: var(--color-surface-warm); color: var(--color-ink); }
 
   .cat-item {
-    padding: 10px 0;
+    display: block;
+    padding: 12px 4px;
+    min-height: 44px;
     border-top: 1px solid var(--color-border-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: background var(--duration-base) var(--easing-standard);
+    border-radius: var(--radius-sm);
   }
   .cat-item:first-of-type { border-top: none; }
+  .cat-item:hover { background: var(--color-surface-warm); }
   .cat-name {
     font-family: var(--font-serif);
     font-size: 15px;
