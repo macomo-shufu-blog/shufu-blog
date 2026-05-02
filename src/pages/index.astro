@@ -122,6 +122,7 @@ const catCounts = {
               </div>
               <span class="cat-count">{catCounts.study}</span>
             </div>
+            {catCounts.family > 0 && (
             <div class="cat-item">
               <div>
                 <div class="cat-name">子育て</div>
@@ -129,12 +130,13 @@ const catCounts = {
               </div>
               <span class="cat-count">{catCounts.family}</span>
             </div>
+            )}
           </div>
 
           <!-- Newsletter -->
           <div class="sidebar-card newsletter">
-            <div class="newsletter-title">新着記事をメールで</div>
-            <p class="newsletter-desc">新しい記事を書いたらお知らせします。いつでも解除できます。</p>
+            <div class="newsletter-title">新着記事をメールで受け取る</div>
+            <p class="newsletter-desc">家計・投資・資格の新記事をお届けします。登録無料・いつでも解除OK。</p>
             <div class="newsletter-form">
               <input type="email" placeholder="you@example.com" />
               <button type="button">登録</button>

@@ -110,7 +110,7 @@ category: 'money'
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/hoken-minaoshi/">月7万の保険をやめたら、月6,000円になった話</a>
 <a href="/blog/nisa-sekkyoku-secchaku/">専業主婦のNISA積立設定、うちの内容を公開します</a>
 <a href="/blog/kakei-kokai-2026-04/">【家計公開】5人家族・生活費の内訳（2026年4月）</a>

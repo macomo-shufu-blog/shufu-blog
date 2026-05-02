@@ -63,7 +63,7 @@ YouTubeは**ふくしままさゆきさん**の動画を併用しています。
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/fp2-goukaku-taiken/">FP2級、1回落ちてリベンジ合格した話</a>
 <a href="/blog/fp2-benkyoho/">子育て中にFP2級に合格した勉強法</a>
 <a href="/blog/asset-3000man/">専業主婦が資産3,000万円を達成するまでの道のり</a>

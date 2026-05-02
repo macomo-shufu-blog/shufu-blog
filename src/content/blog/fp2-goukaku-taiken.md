@@ -104,7 +104,7 @@ FP2級を持ってから、お金に関する判断が変わりました。
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/fp2-benkyoho/">子育て中にFP2級に合格した勉強法</a>
 <a href="/blog/hoken-minaoshi/">月7万の保険をやめたら、月6,000円になった話</a>
 <a href="/blog/boki3-benkyoho/">1歳児がいる家で簿記3級を勉強する方法</a>

@@ -113,7 +113,7 @@ FPの勉強で学んだことを実践。
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/asset-3000man/">専業主婦が資産3,000万円を達成するまでの道のり</a>
 <a href="/blog/nisa-sekkyoku-secchaku/">専業主婦のNISA積立設定、うちの内容を公開します</a>
 <a href="/blog/shufu-money-rule/">収入ゼロの専業主婦が「お金の主導権」を持つためにやった3つのこと</a>

@@ -94,7 +94,7 @@ FP2級は**学科**と**実技**の2科目あります。
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/fp2-goukaku-taiken/">FP2級、1回落ちてリベンジ合格した話（実体験）</a>
 <a href="/blog/hoken-minaoshi/">月7万の保険をやめたら、月6,000円になった話</a>
 <a href="/blog/boki3-benkyoho/">1歳児がいる家で簿記3級を勉強する方法</a>

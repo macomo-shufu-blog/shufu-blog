@@ -87,7 +87,7 @@ category: 'money'
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/sbi-rakuten-hikaku/">SBI証券と楽天証券を比較【両方使う主婦が正直に話す】</a>
 <a href="/blog/asset-3000man/">専業主婦が資産3,000万円を達成するまでの道のり</a>
 <a href="/blog/hoken-minaoshi/">月7万の保険をやめたら、月6,000円になった話</a>

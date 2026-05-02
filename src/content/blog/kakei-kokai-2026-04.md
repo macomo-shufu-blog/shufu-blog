@@ -61,7 +61,7 @@ category: 'money'
 </div>
 
 <div class="related-box">
-<div class="box-title">RELATED</div>
+<div class="box-title">関連記事</div>
 <a href="/blog/asset-3000man/">専業主婦が資産3,000万円を達成するまでの道のり</a>
 <a href="/blog/hoken-minaoshi/">月7万の保険をやめたら、月6,000円になった話</a>
 <a href="/blog/shufu-money-rule/">収入ゼロの専業主婦が「お金の主導権」を持つためにやった3つのこと</a>
